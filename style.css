@@ -1,0 +1,157 @@
+:root {
+    --wheel-size: min(80vw, 300px);
+    --text-offset: calc(var(--wheel-size) * -0.3);
+}
+
+body {
+    margin: 0;
+    padding: 10px;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#wheel-container {
+    position: relative;
+    width: var(--wheel-size);
+    height: var(--wheel-size);
+    margin: 20px 0;
+}
+#arrow {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%)rotate(180deg);
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 25px solid red;
+    z-index: 1;
+}
+/* 转盘主体 */
+#wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid #333;
+    background: conic-gradient(
+                #658bd6 0deg 108deg,      
+                #f2a975 108deg 180deg,   
+                #f5c622 180deg 324deg,  
+                #93cd69 324deg 360deg    
+            );
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+/* 文字容器 */
+#text-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+
+}
+#wheel, #text-container{
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  backface-visibility: hidden;
+  /*will-change: transform;*/
+}
+/* 公共文字样式 */
+.segment-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-origin: left center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.4em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    white-space: nowrap;
+    will-change: transform;
+}
+/* 修改后的文字定位 */
+.text-1 { /* 晴 0-101度 */
+    transform:
+        translateY(-50%)
+        rotate(-35deg)     /* 中间角度：(0+101)/2=50.5 */
+        translateX(150%);
+}
+
+.text-2 { /* 雨 101-220度 */
+    transform:
+        translateY(-50%)
+        rotate(55deg)    /* (101+220)/2=160.5 */
+        translateX(150%);
+}
+
+.text-3 { /* 多云 220-335度 */
+    transform:
+        translateY(-50%)
+        rotate(160deg)      /* (220+356)/2=288 */
+        translateX(150%);
+}
+
+.text-4 { /* 雪 335-360度 */
+    transform:
+        translateY(-50%)
+        rotate(-110deg)      /* (356+360)/2=358 */
+        translateX(150%);
+}
+table {
+    width: 90%;
+    max-width: 400px;
+    border-collapse: collapse;
+    margin: 10px auto;
+    font-size: 14px;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 6px 12px;
+    text-align: center;
+}
+
+button {
+    padding: 12px 24px;
+    margin: 0 10px;
+    font-size: 16px;
+    cursor: pointer;
+    min-width: 80px;
+}
+
+@media (max-width: 480px) {
+    :root {
+        --wheel-size: 70vw;
+    }
+
+    .text-item {
+        font-size: 12px;
+        width: 50px;
+        margin-left: -25px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 320px) {
+    :root {
+        --wheel-size: 65vw;
+    }
+
+    .segment-text {
+        transform: rotate(var(--deg)) translate(0px, var(--text-offset)) !important;
+    }
+}

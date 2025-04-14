@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气预报转盘</title>
+    <link rel="stylesheet" href="../static/style.css?v=2025-04-14">
+</head>
+<body>
+    <div class="container">
+        <h1>天气预报转盘</h1>
+        <div id="wheel-container">
+            <div id="arrow"></div>
+            <div id="wheel">
+                <div id="text-container">
+                    <div class="segment-text text-1" style="--deg: 144deg;">晴天</div>
+                    <div class="segment-text text-2" style="--deg: 144deg;">雨天</div>
+                    <div class="segment-text text-3" style="--deg: 144deg;">多云</div>
+                    <div class="segment-text text-4" style="--deg: 144deg;">雪天</div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3>总旋转次数：<span id="total">0</span></h3>
+        </div>
+
+        <table>
+            <tr>
+                <th>天气类型</th>
+                <th>晴</th>
+                <th>雨</th>
+                <th>多云</th>
+                <th>雪</th>
+            </tr>
+            <tr>
+                <td>出现次数</td>
+                <td id="sunny">0</td>
+                <td id="rainy">0</td>
+                <td id="cloudy">0</td>
+                <td id="snow">0</td>
+            </tr>
+        </table>
+
+        <div>
+            <button id="start">开始</button>
+            <button id="reset">复位</button>
+        </div>
+    </div>
+    <script src="../static/script.js?v=2025-04-14"></script>
+</body>
+</html>
